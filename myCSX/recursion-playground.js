@@ -22,15 +22,15 @@
   
 //   console.log( pow(2, 3) ); // 8
 
-function pow(x, n) {
-    if (n == 1) {
-      return x;
-    } else {
-      return x * pow(x, n - 1);
-    }
-  }
+// function pow(x, n) {
+//     if (n == 1) {
+//       return x;
+//     } else {
+//       return x * pow(x, n - 1);
+//     }
+//   }
   
-  console.log( pow(2, 3) ); // 8
+//   console.log( pow(2, 3) ); // 8
 
 
 // https://javascript.info/recursion#tasks
@@ -59,7 +59,7 @@ function pow(x, n) {
 
 // console.log(sumTo3(100000));
 
-// const calcFactorial = (n = 1) => {
+// const calcFactorial = (n) => {
 //     if (n === 1) return n;
 //     else {
 //         return n * calcFactorial(n - 1);
@@ -67,10 +67,10 @@ function pow(x, n) {
 // }
 
 // console.log(calcFactorial(5));
-// console.log(calcFactorial(4));
 
 // const fib = (n) => {
 //     if (n <= 1) {
+//         console.log(n);
 //         return n;
 //     }
 //     else {
@@ -82,31 +82,15 @@ function pow(x, n) {
 // console.log(fib(7)); // 13
 // console.log(fib(77)); // 5527939700884757
 
-// let answer = 0;
+let answer = 0;
 
-// const fib2 = (n) => {
-//     for (let i = 1; i <= n; i++) {
-//         answer += ((n - i) + (n - (i - 1)));
-//     }
-//     return answer;
-// }
-
-// console.log(fib2(3)); // 2
-// console.log(fib2(7)); // 13
-// console.log(fib2(77)); // 5527939700884757
-
-function x(num) {
-    'use strict';
-    let i = 5;
-    if (num == 0) {
-    return 'stack is probably not dead if you\'re seeing this';
-    } else {
-    return x (num-1);
+const fib2 = (n) => {
+    for (let i = 1; i <= n; i++) {
+        answer += ((n - i) + (n - (i - 1)));
     }
+    return answer;
 }
 
-// console.log(x(1));
-// console.log(x(100));
-// console.log(x(1000));
-// console.log(x(8000));
-console.log(x(8601));
+console.log(fib2(3)); // 2
+console.log(fib2(7)); // 13
+console.log(fib2(77)); // 5527939700884757
