@@ -62,8 +62,84 @@ const storeData = (data) => {
 };
 
 // Invoke the ajaxSimulate function with an id of 1 and the storeData function as the callback. Immediately after, log to the console the value of dataReceived. What do you expect it to be?
-ajaxSimulate(1, storeData);
-console.log(dataReceived);
+// ajaxSimulate(1, storeData);
+// console.log(dataReceived);
 
 // Without changing anything else, copy-paste the console.log statement somewhere where it will log with the info we need.
 /// //////////////////////////////////////////////////////////////////////
+// limitedInterval
+// https://csx.codesmith.io/units/async/challenge-limited-interval
+// Write a function called limitedInterval that accepts as arguments in this order -
+
+// callback function
+// wait time in milliseconds
+// limit time in milliseconds.
+
+// limitedInterval should run the callback once every wait milliseconds, up to limit milliseconds, and then stop.
+
+// Add code here
+// this has to be outside the function or it gets reset on each call
+let timeElapsed = 0;
+
+const limitedInterval = (callback, waitTime, limitTime) => {
+  // track how many seconds the cb has run
+  timeElapsed += waitTime;
+  if (timeElapsed < limitTime) {
+    setTimeout(callback, waitTime);
+    limitedInterval(() => console.log('repeating'), 100, 550);
+  }
+};
+// /* Uncomment the following line and click 'run' to test your work */
+// limitedInterval(() => console.log('repeating'), 100, 550); // should log 'repeating' once per 100 ms, five times.
+
+/// //////////////////////////////////////////////////////////////////////
+// runInOrder
+// https://csx.codesmith.io/units/async/challenge-run-in-order
+// Write a function called runInOrder that accepts as arguments in this order -
+
+// an array of functions
+// an array of numbers representing times in milliseconds
+
+// runInOrder should execute the functions in order, with the corresponding numbers in milliseconds being the time to wait from the previous invocation. For example -
+
+// function sayHi() {
+//   console.log('hi');
+// }
+// function sayBye() {
+//   console.log('bye');
+// }
+// function sayHowdy() {
+//   console.log('howdy');
+// }
+
+// runInOrder([sayHi, sayBye, sayHowdy], [300, 600, 200]);
+// /* should log: 'hi' (after 300 ms) 'bye' (600 ms after 'hi') 'howdy' (200 ms after 'bye') */
+
+// Add code here
+const runInOrder = (arrFunc, arrNum) => {
+  let waitTime = 0;
+  for (let i = 0, len = arrFunc.length; i < len; i += 1) {
+    waitTime += arrNum[i];
+    setTimeout(arrFunc[i], waitTime);
+  }
+}
+// /* Uncomment the following lines and click 'run' to test your work */
+
+function sayHi() {
+  console.log('hi');
+}
+function sayBye() {
+  console.log('bye');
+}
+function sayHowdy() {
+  console.log('howdy');
+}
+
+runInOrder([sayHi, sayBye, sayHowdy], [200, 100, 300]);
+
+/*
+should log:
+'hi' (after 200 ms)
+'bye' (100 ms after 'hi')
+'howdy' (300 ms after 'bye')
+*/
